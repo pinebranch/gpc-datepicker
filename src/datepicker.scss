@@ -1,0 +1,237 @@
+$colorSunday: #e35d6a;
+$colorDayHover: #cfe2ff;
+$colorSelected: #3d8bfd;
+$colorToday: #e9ecef;
+$colorMeta: #f5f8fa;
+$borderColor: #cbd6e2;
+$borderMeta: #eee;
+
+
+.gpc-calendar {
+    position: absolute;
+    width: 300px;
+    border: 1px solid $borderColor;
+    background-color: #fff;
+    font-size: 0.85em;
+    z-index: 9999;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+}
+
+@media(max-width: 767px) {
+    .gpc-calendar.show {
+        position: fixed;
+        top: 0 !important;
+        left: 50% !important;
+        margin: 0.5rem auto;
+        transform: translateX(-50%);
+    }
+}
+
+.gpc-calendar .gpc-cal-view {
+    display: none;
+}
+
+.gpc-calendar .gpc-cal-view.active {
+    display: block;
+}
+
+.gpc-calendar .gpc-cal-header {
+    padding: 15px 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.gpc-calendar .gpc-cal-header>button {
+    border: none;
+    background-color: transparent;
+}
+
+.gpc-calendar .gpc-cal-caption-button {
+    display: inline-block;
+    position: relative;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.gpc-calendar .gpc-cal-caption-button:after {
+    display: inline-block;
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid currentColor;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+}
+
+.gpc-calendar .gpc-cal-meta-today {
+    padding: 0.375em 0.75em;
+    text-align: center;
+    border: 1px solid $borderMeta;
+    border-width: 1px 0;
+    background: $colorMeta;
+    cursor: pointer;
+}
+
+/*=============================================
+=            View days            =
+=============================================*/
+.gpc-calendar .view-days {
+
+    text-align: center;
+
+    .gpc-cal-days-name {
+        height: 40px;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        align-items: center;
+    }
+    .gpc-cal-days-list {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+
+        .gpc-cal-day {
+            height: 40px;
+            font-size: 1rem;
+            line-height: 40px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $colorDayHover;
+            }
+
+            &.selected {
+                background-color: $colorSelected;
+                color: #fff;
+            }
+
+            &.disabled {
+                color: #ccc;
+                cursor:default;
+            }
+        }
+
+        .gpc-cal-today {
+            background-color: $colorToday;
+        }
+    }
+
+    .gpc-cal-day-0 {
+        color: $colorSunday;
+    }
+}
+
+
+/*=============================================
+=            View months            =
+=============================================*/
+
+.gpc-calendar .view-months {
+    .gpc-cal-body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gpc-cal-month {
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        cursor: pointer;
+        border: solid $colorToday;
+        border-width: 0 1px 1px 0;
+
+        &:hover {
+            background-color: $colorDayHover;
+        }
+
+        &.selected {
+            background-color: $colorSelected;
+            color: #fff;
+        }
+
+        &.disabled {
+            color: #ccc;
+            cursor:default;
+        }
+    }
+}
+
+
+/*=============================================
+=            View Years            =
+=============================================*/
+.gpc-calendar .view-years {
+    text-align: center;
+
+    .gpc-cal-body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .gpc-cal-year {
+        height: 60px;
+        line-height: 60px;
+        cursor: pointer;
+        border: solid $colorToday;
+        border-width: 0 1px 1px 0;
+
+        &:hover {
+            background-color: $colorDayHover;
+        }
+
+        &.selected {
+            background-color: $colorSelected;
+            color: #fff;
+        }
+
+        &.disabled {
+            color: #ccc;
+            cursor:default;
+        }
+    }
+}
+
+
+/*=============================================
+=            Timepicker            =
+=============================================*/
+.gpc-cal-btn {
+    padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+    border: 1px solid $borderColor;
+    text-align: center;
+    border-radius: 0.25rem;
+
+    &:hover {
+        background-color: $colorSelected;
+        border-color: $colorSelected;
+        color: #fff;
+    }
+}
+
+.gpc-cal-timepicker {
+    padding: 10px 0;
+    border-top: 1px solid $borderMeta;
+
+    .gpc-cal-select {
+        margin-right: 10px;
+        padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+        background-color: $colorMeta;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 16px 12px;
+        border: 1px solid $borderColor;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        appearance: none;
+        outline: none;
+    }
+}
